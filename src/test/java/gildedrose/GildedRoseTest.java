@@ -25,5 +25,6 @@ class GildedRoseTest {
         assertEquals(80, app.items[2].quality);
         assertEquals(22, app.items[3].quality);
         assertEquals(18, app.items[4].quality);
+        assertEquals(9, app.items[0].sellIn);
     }
 }

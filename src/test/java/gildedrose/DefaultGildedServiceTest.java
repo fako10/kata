@@ -1,6 +1,7 @@
 package gildedrose;
 
 import org.example.gildedrose.Item;
+import org.example.gildedrose.ItemType;
 import org.example.service.DefaultGildedService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -53,4 +54,20 @@ class DefaultGildedServiceTest {
         // Assert
         assertEquals(expectedQuality, item.quality);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "15, 14", // sellin decrease of 1
+    })
+    void testSellin(int sellIn, int expectedSellin) {
+        // Arrange
+        Item item = new Item(ItemType.SULFURAS.name(), sellIn, 40);
+
+        // Act
+        defaultGildedService.updateSellin(item);
+
+        // Assert
+        assertEquals(expectedSellin, item.sellIn);
+    }
+
 }

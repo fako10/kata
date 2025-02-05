@@ -37,4 +37,20 @@ class GildedRoseSulfuraServiceTest {
         // Assert
         assertEquals(expectedQuality, item.quality);
     }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1000, 1000", // sellin in sulfuras don't have sellin date, we use 1000 as default value
+    })
+    void testSellin(int sellIn, int expectedSellin) {
+        // Arrange
+        Item item = new Item(ItemType.SULFURAS.name(), sellIn, 40);
+
+        // Act
+        gildedRoseSulfuraService.updateSellin(item);
+
+        // Assert
+        assertEquals(expectedSellin, item.sellIn);
+    }
+
 }

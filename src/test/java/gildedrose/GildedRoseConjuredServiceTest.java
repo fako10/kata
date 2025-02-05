@@ -37,4 +37,19 @@ class GildedRoseConjuredServiceTest {
         assertEquals(expectedQuality, item.quality);
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "15, 14", // sellin decrease of 1
+    })
+    void testSellin(int sellIn, int expectedSellin) {
+        // Arrange
+        Item item = new Item(ItemType.SULFURAS.name(), sellIn, 40);
+
+        // Act
+        gildedRoseConjuredService.updateSellin(item);
+
+        // Assert
+        assertEquals(expectedSellin, item.sellIn);
+    }
+
 }
