@@ -7,16 +7,14 @@ public class GildedRoseBackStageService implements  GildedRoseService {
     @Override
     public int calculateQualityChange(Item item) {
 
-        int qualityIncrease = 1;
-
-        if(item.sellIn <= 10 && item.sellIn > 5) {
-            qualityIncrease = 2;
-        } else if(item.sellIn <= 5 && item.sellIn > 0) {
-            qualityIncrease = 3;
-        } else if(item.sellIn <= 0) {
-            qualityIncrease = 0;
+        if (item.sellIn <= 0) {
+            return 0;
+        } else if (item.sellIn <= 5) {
+            return 3;
+        } else if (item.sellIn <= 10) {
+            return 2;
         }
-        return qualityIncrease;
+        return 1;
     }
 
     @Override
